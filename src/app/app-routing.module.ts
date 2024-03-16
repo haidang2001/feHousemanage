@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './auth.guard';
+// import { AuthGuard } from './auth.guard';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { EmployeeAddComponent } from './components/employee-add/employee-add.component';
 import { EmployeeComponent } from './components/employee/employee.component';
@@ -17,7 +17,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: 'full' },
   {
-    path: '', component: HomeLayoutComponent, canActivate: [AuthGuard],
+    // path: '', component: HomeLayoutComponent, canActivate: [AuthGuard],
+    path: '', component: HomeLayoutComponent,
     children: [
 
       {
@@ -64,6 +65,6 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
   ],
   exports: [RouterModule],
-  providers: [AuthGuard],
+  // providers: [AuthGuard],
 })
 export class AppRoutingModule { }
