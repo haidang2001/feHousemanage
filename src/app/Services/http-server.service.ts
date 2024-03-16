@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
 	providedIn: 'root'
 })
 export class HttpServerService {
-	private REST_API_SERVER2 = 'http://localhost:8080';
+	//private REST_API_SERVER2 = 'http://localhost:8080';
+	private REST_API_SERVER2 = 'https://housemanage-f4f94a4bfa42.herokuapp.com';
 	private currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
 	private httpOptions = {
 		headers: new HttpHeaders({
@@ -30,14 +31,14 @@ export class HttpServerService {
 		const url = `${this.REST_API_SERVER2}/api/house/page?page=${pageNumber}&size=5`;
 		return this.httpClient.get<any>(url, this.httpOptions);
 	}
-	
-	public getImage(idHouse:any):  Observable<any> {
+
+	public getImage(idHouse: any): Observable<any> {
 		const url = `${this.REST_API_SERVER2}/api/house/image/${idHouse}`;
 		return this.httpClient.get<any>(url, this.httpOptions2);
 	}
 	public postHouse(payload: any): Observable<any> {
 		const url = `${this.REST_API_SERVER2}/api/house`;
-		return this.httpClient.post<any>(url, payload,this.httpOptions2);
+		return this.httpClient.post<any>(url, payload, this.httpOptions2);
 	}
 
 	public getHouseById(id: number): Observable<any> {
@@ -74,8 +75,8 @@ export class HttpServerService {
 		const url = `${this.REST_API_SERVER2}/api/acc/add`;
 		return this.httpClient.post<any>(url, payload);
 	}
-	public getLastAcc():Observable<any>{
+	public getLastAcc(): Observable<any> {
 		const url = `${this.REST_API_SERVER2}/api/acc/last`;
-		return this.httpClient.get<any>(url,this.httpOptions);
+		return this.httpClient.get<any>(url, this.httpOptions);
 	}
 }
