@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
     password: ['', Validators.required]
   })
   // public isDisplayed: boolean = true;
-  
+
   constructor(
     private formBuilder: FormBuilder,
     // private httpServerService: HttpServerService,
@@ -41,22 +41,22 @@ export class LoginComponent implements OnInit {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': 'Basic ' + btoa(this.formLogin.value.username + ":" +  this.formLogin.value.password)
+        'Authorization': 'Basic ' + btoa(this.formLogin.value.username + ":" + this.formLogin.value.password)
       })
     }
-    this.httpClient.post('http://localhost:8080/api/acc/login',this.formLogin.value,httpOptions).subscribe((data: any) => {
+    this.httpClient.post('https://housemanage-f4f94a4bfa42.herokuapp.com/api/acc/login', this.formLogin.value, httpOptions).subscribe((data: any) => {
       console.log(data)
       if (data.message == 'Login successfully') {
         localStorage.setItem('currentUser', JSON.stringify(this.formLogin.value));
         // setTimeout(() =>{
-				//   window.location.reload();
-			  // },10)
-        this.snackbar.openSnackBar(data.message,'')
+        //   window.location.reload();
+        // },10)
+        this.snackbar.openSnackBar(data.message, '')
         this.router.navigateByUrl('/dashboard');
       } else {
         // console.log('else')
         // this.errorMessage = data.message;
-        this.snackbar.openSnackBar(data.message,'error')
+        this.snackbar.openSnackBar(data.message, 'error')
         // this.hideAnimatedDiv();
         // this.isDisplayed=true
       }
@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
       // console.log('error')
       // console.log(error)
       // this.errorMessage = 'username or password not match';
-      this.snackbar.openSnackBar('Username or password not match','error')
+      this.snackbar.openSnackBar('Username or password not match', 'error')
       // this.hideAnimatedDiv();
       // this.isDisplayed=true
     })
