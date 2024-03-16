@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class HttpServerService {
 	//private REST_API_SERVER2 = 'http://localhost:8080';
 	private REST_API_SERVER2 = 'https://housemanage-f4f94a4bfa42.herokuapp.com';
+
 	private currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
 	private httpOptions = {
 		headers: new HttpHeaders({
