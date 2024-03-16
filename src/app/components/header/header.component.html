@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="padding: 20px; border-bottom: 1px solid black; background-color: #f3f3f3;">
+  <h1><a class="navbar-brand" routerLink="/dashboard">HOUSE RENTAL MANAGEMENT</a></h1>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <!-- <li><a routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page">Home Component</a></li> -->
+      <li class="nav-item ">
+        <a class="nav-link" routerLink="/dashboard" routerLinkActive="active" ariaCurrentWhenActive="page">Dashboard</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" routerLink="/house" routerLinkActive="active" ariaCurrentWhenActive="page">House </a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="#">Tenant</a>
+      </li>
+      <li class="nav-item " *ngIf="currentUser.username == 'admin'">
+        <a class="nav-link" routerLink="/employee" routerLinkActive="active" ariaCurrentWhenActive="page">Employee</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="#">Invoice</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="#">Report</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="#">Setting</a>
+      </li>
+      <li class="nav-item" >
+        <a class="nav-link disabled" href="#">{{currentUser.username}}</a>
+      </li>
+    </ul>
+    <!-- <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form> -->
+  </div>
+</nav>

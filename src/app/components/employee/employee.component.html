@@ -1,0 +1,49 @@
+<div style="padding: 20px;">
+
+    <!-- <button class="btn btn-primary" (click)="handleSignupAction()">New account</button> -->
+    <h1 class="mb-3">Employee </h1>
+    <div style="background-color: #f3f3f3;" class="mb-3">Search</div>
+    <div style="background-color: #f3f3f3; min-height: 500px; padding: 50px;">
+        
+        <a routerLink="/employee/add" routerLinkActive="active" ariaCurrentWhenActive="page" >
+            <button type="button" class="btn btn-primary mb-3 " style="float: right;">+ New employee</button>
+        </a>
+
+        <table class="table">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">House</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+
+                <tr *ngFor="let employee of employeeData" >
+                    <th scope="row">{{employee.id}}</th>
+                    <td>{{employee.name}}</td>
+                    <!-- <td *ngIf="employee.houseName != null">{{employee.houseName}}</td> -->
+                    <!-- <td >Not set</td> -->
+                    <ng-template #houseNotNull>
+                        <td >{{employee.houseName}}</td>
+                   </ng-template>
+                   <ng-template #houseNull>
+                       <td style="color: red;">Not set</td>
+                   </ng-template>
+                   <div *ngIf="employee.houseName != null; then houseNotNull else houseNull"></div>
+                    <td>{{employee.phone}}</td>
+                    <td>{{employee.status}}</td>
+                    <td>
+                        <button type="button" class="btn btn-danger" ><mat-icon>delete</mat-icon></button> |
+                        <button type="button" class="btn btn-warning" ><mat-icon>edit</mat-icon></button> 
+                        <!-- <button type="button" class="btn btn-primary" >Add account</button> -->
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

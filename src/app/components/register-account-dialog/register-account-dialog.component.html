@@ -1,0 +1,59 @@
+<mat-card>
+	<mat-card-title style="margin: 32px;">Register new account</mat-card-title>
+	<mat-card-content>
+		<form [formGroup]="formRegister" (ngSubmit)="submitRegister()">
+			<mat-form-field>
+				<mat-label>Username</mat-label>
+				<input type="text" matInput formControlName="username" required="">
+				<mat-error *ngIf="formRegister.controls['username'].invalid && formRegister.controls['username'].touched" class="error">Username is required</mat-error>
+			</mat-form-field>
+
+			<br />
+			<mat-form-field>
+				<mat-label>Password</mat-label>
+				<input type="password" matInput formControlName="password" required="">
+				<mat-error *ngIf="formRegister.controls['password'].invalid && formRegister.controls['password'].touched" class="error">Password is required</mat-error>
+			</mat-form-field>
+            <br />
+            <mat-form-field>
+				<mat-label>Re-password</mat-label>
+				<input type="password" matInput formControlName="confirmPassword" required="">
+                <mat-error *ngIf="formRegister.controls['confirmPassword'].invalid && formRegister.controls['confirmPassword'].touched" class="error">Confirm password is required</mat-error>
+				<mat-error *ngIf="validateSubmit()" class="error">Re password not match</mat-error>
+			</mat-form-field>
+
+			<mat-dialog-actions align="end">
+				<button type="submit" mat-raised-button color="primary" [disabled]="!formRegister.valid" >Save</button>
+                <button mat-raised-button mat-dialog-close color="warn">Close</button>
+                
+			</mat-dialog-actions>
+			
+		</form>
+	</mat-card-content>
+</mat-card>
+
+<!-- <form [formGroup]="formLogin" (ngSubmit)="submitLogin()">
+    <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input type="text" matInput formControlName="username">
+        <mat-error *ngIf="formLogin.controls['username'].invalid && formLogin.controls['username'].touched"
+            class="error">Username is required</mat-error>
+    </mat-form-field>
+
+    <br />
+    <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input type="password" matInput formControlName="password">
+        <mat-error *ngIf="formLogin.controls['password'].invalid && formLogin.controls['password'].touched"
+            class="error">Password is required</mat-error>
+    </mat-form-field>
+
+
+    <mat-dialog-actions align="end">
+        <button type="submit" mat-raised-button color="primary" [disabled]="!formLogin.valid"
+            style="width: 100%;">Login</button>
+    </mat-dialog-actions>
+    <div style="margin-top: 8px; text-align: center;">
+        <a routerLink="/forgotPass">Forgot your password?</a>
+    </div>
+</form> -->

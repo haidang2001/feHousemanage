@@ -1,0 +1,68 @@
+<div style="padding: 20px;">
+    <h1 class="mb-3">House </h1>
+    <div style="background-color: #f3f3f3;" class="mb-3">
+        <input type="text" [(ngModel)]="searchText" placeholder="Search something ..."/>
+    </div>
+    <div style="background-color: #f3f3f3; min-height: 500px; padding: 50px;">
+        
+        <a routerLink="/house/add" routerLinkActive="active" ariaCurrentWhenActive="page" >
+            <button type="button" class="btn btn-primary mb-3 " style="float: right;">+ New house</button>
+        </a>
+
+        <table class="table" style="min-height: 600px;">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Total rooms</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let house of houseDataFull | filter:searchText | paginate:{itemsPerPage:5, currentPage:p}" (click)="getDetailHouse()">
+                    <th scope="row">{{house.id}}</th>
+                    <td>{{house.name}}</td>
+                    <td>{{house.location}}</td>
+                    <td>{{house.totalRooms}}</td>
+                    <td>{{house.status}}</td>
+                    <td>
+                        <img  src="http://localhost:8080/api/house/image/{{house.id}}"  alt="error"  height=100/>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger" (click)="deleteHouse(house.id)"  >
+                            <mat-icon>delete</mat-icon>
+                        </button> |
+                        <button type="button" class="btn btn-warning" (click)="updateHouse(house.id)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+            <!-- <tbody>
+                <tr *ngFor="let house of houseData " (click)="getDetailHouse()">
+                    <th scope="row">{{house.id}}</th>
+                    <td>{{house.name}}</td>
+                    <td>{{house.location}}</td>
+                    <td>{{house.totalRooms}}</td>
+                    <td>{{house.status}}</td>
+                    <td>
+                        <img  src="http://localhost:8080/api/house/image/{{house.id}}"  alt="error"  height=100/>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger" (click)="deleteHouse(house.id)"  >
+                            <mat-icon>delete</mat-icon>
+                        </button> |
+                        <button type="button" class="btn btn-warning" (click)="updateHouse(house.id)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                    </td>
+                </tr>
+            </tbody> -->
+        </table>
+        
+        <pagination-controls (pageChange)="p = $event" style="float:right"></pagination-controls>
+    </div>
+</div>

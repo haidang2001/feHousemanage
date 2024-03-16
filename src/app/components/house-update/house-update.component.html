@@ -1,0 +1,66 @@
+<p>house-update works!</p>
+<div class="add-house">
+    <h1 class="mb-3">Create New House </h1>
+
+    <form [formGroup]="formNewHouse" class="add-newhouse-form" (ngSubmit)="updateHouse()">
+        <h6 style="text-align: center;">HOUSE RENTAL MANAGEMENT</h6>
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control mb-3" id="name" formControlName="name" >
+          <div class="alert alert-danger" *ngIf="formNewHouse.controls['name'].invalid && formNewHouse.controls['name'].touched" style="color: red;">Name is not empty</div>
+        </div>
+        <div class="mb-3">
+          <label for="location" class="form-label">Location</label>
+          <input type="text" class="form-control  mb-3" id="location" formControlName="location">
+          <div class="alert alert-danger" *ngIf="formNewHouse.controls['location'].invalid && formNewHouse.controls['location'].touched" style="color: red;">Location is not empty</div>
+        </div>
+        <div class="mb-3">
+          <label for="establishDate" class="form-label">Establish date</label>
+          <input type="date" class="form-control  mb-3" id="establishDate" formControlName="establishDate"  >
+          <div class="alert alert-danger" *ngIf="formNewHouse.controls['establishDate'].invalid && formNewHouse.controls['establishDate'].touched" style="color: red;">establishDate is not empty</div>
+        </div>
+        <div class="mb-3">
+          <label for="totalRooms" class="form-label">Total rooms</label>
+          <input type="number" class="form-control  mb-3" id="totalRooms" formControlName="totalRooms">
+          <div class="alert alert-danger" *ngIf="formNewHouse.controls['totalRooms'].invalid && formNewHouse.controls['totalRooms'].touched" style="color: red;">totalRooms is not empty</div>
+        </div>
+        <!-- <div class="mb-3">
+          <label for="manager" class="form-label">Manager</label>
+          <input type="text" class="form-control  mb-3" id="manager" formControlName="manager">
+          <div class="alert alert-danger" *ngIf="formNewHouse.controls['manager'].invalid && formNewHouse.controls['manager'].touched" style="color: red;">manager is not empty</div>
+        </div> -->
+
+        <div class="mb-3">
+          <label for="houseName" class="form-label">Manager</label>
+          <select formControlName="manager" class="form-select" [(ngModel)]="currentManager">
+            <option hidden>Select Manager</option>
+            <option [value]="currentManager" disabled>{{currentManager}}</option>
+            <option *ngFor="let manager of managerData">{{manager.name}}</option>
+            <!-- <option *ngFor="let manager of managerData">{{manager.name}}</option> -->
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="status" class="form-label">Status</label>
+          <!-- <input type="text" class="form-control  mb-3" id="status" formControlName="status"> -->
+          <!-- <div class="alert alert-danger" *ngIf="formNewHouse.controls['status'].invalid && formNewHouse.controls['status'].touched" style="color: red;">status is not empty</div> -->
+          <select formControlName="status" class="form-select"  [(ngModel)]="currentStatus" >
+            <option  disabled>Select Status</option>
+            <option >Active</option>
+            <option >Deactive</option>
+          </select>
+        </div>
+        
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea rows="4" cols="51" formControlName="description" form="usrform" style="border: 1px solid #f3f3f3; margin-bottom: 6px;"></textarea>
+          <div class="alert alert-danger" *ngIf="formNewHouse.controls['description'].invalid && formNewHouse.controls['description'].touched" style="color: red;">description is not empty</div>
+        </div>
+        <div class="mb-3">
+          <label for="image" class="form-label">Image</label>
+          <input type="text" class="form-control  mb-3" id="image" formControlName="image">
+        </div>
+        
+        <button type="submit" class="mb-3 btn btn-primary w-100" [disabled]="!formNewHouse.valid">Submit</button>
+        
+      </form>
+  </div>

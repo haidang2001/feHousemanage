@@ -1,0 +1,129 @@
+<div class="add-employee">
+    <h1 class="mb-3">Create New Employee </h1>
+
+    <form [formGroup]="formNewEmployee" (ngSubmit)="submitNewEmployee()" class="add-new-employee-form">
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control mb-3" id="name" formControlName="name" >
+        <div class="alert alert-danger" *ngIf="formNewEmployee.controls['name'].invalid && formNewEmployee.controls['name'].touched" style="color: red;">Name is not empty</div>
+      </div>
+      <div class="mb-3">
+        <label for="birthDate" class="form-label">Birthday</label>
+        <input type="date" class="form-control  mb-3" id="birthDate" formControlName="birthDate" [max]="maxDate">
+        <div class="alert alert-danger" *ngIf="formNewEmployee.controls['birthDate'].invalid && formNewEmployee.controls['birthDate'].touched" style="color: red;">birthDate is not empty</div>
+      </div>
+      <div class="">
+        <label for="gender">Gender</label>
+        <br/>
+        <input id="male" type="radio" value="male" name="gender" formControlName="gender" style="margin-right: 4px;">
+        <label for="male" style="margin-right: 12px;">Male</label>
+        <input id="female" type="radio" value="female" name="gender" formControlName="gender" style="margin-right: 4px;">
+        <label for="female">Female</label>
+           
+        <!-- <div *ngIf="f.gender.touched && f.gender.invalid" class="alert alert-danger">
+            <div *ngIf="f.gender.errors.required">Name is required.</div>
+        </div> -->
+    </div>
+      <div class="mb-3">
+        <label for="phone" class="form-label">Phone</label>
+        <input type="text" class="form-control mb-3" id="phone" formControlName="phone" >
+        <div class="alert alert-danger" *ngIf="formNewEmployee.controls['phone'].invalid && formNewEmployee.controls['phone'].touched" style="color: red;">phone is not empty</div>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="text" class="form-control mb-3" id="email" formControlName="email" >
+        <div class="alert alert-danger" *ngIf="formNewEmployee.controls['email'].invalid && formNewEmployee.controls['email'].touched" style="color: red;">email is not empty</div>
+      </div>
+      <div class="mb-3">
+        <label for="idNumber" class="form-label">ID number</label>
+        <input type="number" class="form-control mb-3" id="idNumber" formControlName="idNumber" readonly [value]="randomIdNumber">
+        <div class="alert alert-danger" *ngIf="formNewEmployee.controls['idNumber'].invalid && formNewEmployee.controls['idNumber'].touched" style="color: red;">idNumber is not empty</div>
+      </div>
+      <!-- <div class="mb-3">
+        <label for="houseName" class="form-label">House</label>
+        <input type="text" class="form-control mb-3" id="houseName" formControlName="houseName" >
+        <div class="alert alert-danger" *ngIf="formNewEmployee.controls['houseName'].invalid && formNewEmployee.controls['houseName'].touched" style="color: red;">houseName is not empty</div>
+      </div> -->
+      <div class="mb-3">
+        <label for="position" class="form-label">Position</label>
+        <select  class="form-select" formControlName="position"   [ngModel]="position" (ngModelChange)="onChange($event)" >
+          <option  hidden>Select position</option>
+          <!-- [ngValue]="position" -->
+          <option value="manager">Manager</option>
+          <option value="Protector">Protector</option>
+          <option value="Cleaner">Cleaner</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="houseName" class="form-label">House</label>
+        <select *ngIf="position !='manager'" formControlName="houseName" class="form-select">
+          <option hidden>Select House</option>
+          <option *ngFor="let h of listHouse">{{h.name}}</option>
+          <!-- <option >Deactive</option> -->
+        </select>
+      </div>
+      <!-- <div class="mb-3">
+        <label for="acc_id" class="form-label">acc</label>
+        <input type="number" class="form-control mb-3" id="acc_id" formControlName="acc_id" >
+        <div class="alert alert-danger" *ngIf="formNewEmployee.controls['acc_id'].invalid && formNewEmployee.controls['acc_id'].touched" style="color: red;">acc_id is not empty</div>
+      </div> -->
+      <!-- <div class="mb-3">
+        <label for="position" class="form-label">Position</label>
+        <input type="text" class="form-control mb-3" id="position" formControlName="position" [(ngModel)]="position"  >
+        <div class="alert alert-danger" *ngIf="formNewEmployee.controls['position'].invalid && formNewEmployee.controls['position'].touched" style="color: red;">position is not empty</div>
+      </div> -->
+
+      
+      <!-- <div class="mb-3">
+        <label for="house" class="form-label">House</label>
+        <select formControlName="house" class="form-select">
+          <option  disabled>Select house</option>
+          <option >Active</option>
+          <option >Deactive</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="position" class="form-label">Position</label>
+        <select formControlName="position" class="form-select">
+          <option  disabled>Select position</option>
+          <option >Active</option>
+          <option >Deactive</option>
+        </select>
+      </div> -->
+      <!-- <div class="mb-3">
+        <label for="birthday" class="form-label">Account</label>
+        <input type="text" class="form-control  mb-3" id="birthday" formControlName="birthday" [max]="maxDate">
+        <div class="alert alert-danger" *ngIf="formNewEmployee.controls['birthday'].invalid && formNewEmployee.controls['birthday'].touched" style="color: red;">Birthday is not empty</div>
+      </div> -->
+      <div class="mb-3">
+        <label for="startedDate" class="form-label">Started Date</label>
+        <input type="date" class="form-control  mb-3" id="startedDate" formControlName="startedDate" [max]="maxDate">
+        <div class="alert alert-danger" *ngIf="formNewEmployee.controls['startedDate'].invalid && formNewEmployee.controls['startedDate'].touched" style="color: red;">startedDate is not empty</div>
+      </div>
+      <div class="mb-3">
+        <label for="status" class="form-label">Status</label>
+        <select  class="form-select" formControlName="status">
+          <option  hidden>Select Status</option>
+          <option >Active</option>
+          <option >Deactive</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea rows="4" cols="51" formControlName="description" form="usrform" style="border: 1px solid #f3f3f3; margin-bottom: 6px;"></textarea>
+        <div class="alert alert-danger" *ngIf="formNewEmployee.controls['description'].invalid && formNewEmployee.controls['description'].touched" style="color: red;">description is not empty</div>
+      </div>
+      <div class="mb-3">
+        <label for="image" class="form-label">Image</label>
+        <input type="text" class="form-control  mb-3" id="image" formControlName="image">
+      </div>
+      <button type="button" class="mb-3 btn btn-success w-100" (click)="openRegister() " [disabled]="isRegister" >Create account for this employee</button>
+      <div class="mb-3">
+        <label for="acc_id" class="form-label">Acc id</label>
+        <input type="text" class="form-control mb-3" id="acc_id" formControlName="acc_id" readonly [(ngModel)]="acc_id">
+        <!-- <div class="alert alert-danger" *ngIf="formNewEmployee.controls['acc_id'].invalid && formNewEmployee.controls['acc_id'].touched" style="color: red;">acc_id is not empty</div> -->
+      </div>
+      <button type="submit" class="mb-3 btn btn-primary w-100" [disabled]="!formNewEmployee.valid">Submit</button>
+      
+    </form>
+  </div>
